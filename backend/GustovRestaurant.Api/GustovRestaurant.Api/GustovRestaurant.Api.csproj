@@ -11,4 +11,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GustovRestaurant.Application\GustovRestaurant.Application.csproj" />
+    <ProjectReference Include="..\GustovRestaurant.Infraestructure\GustovRestaurant.Infraestructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EndPoints\" />
+  </ItemGroup>
+
 </Project>
