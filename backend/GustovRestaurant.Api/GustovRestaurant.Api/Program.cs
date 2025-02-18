@@ -1,3 +1,4 @@
+using GustovRestaurant.Api.EndPoints;
 using GustovRestaurant.Infraestructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,5 +41,6 @@ if (app.Environment.IsDevelopment())
 }
 
 //add endpoints
+app.MapDishEndPoints();
 
 app.Run();
