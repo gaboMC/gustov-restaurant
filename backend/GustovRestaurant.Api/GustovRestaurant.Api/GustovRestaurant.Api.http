@@ -1,0 +1,6 @@
+@GustovRestaurant.Api_HostAddress = http://localhost:5220
+
+GET {{GustovRestaurant.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
