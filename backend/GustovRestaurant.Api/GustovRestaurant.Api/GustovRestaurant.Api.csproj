@@ -16,8 +16,4 @@
     <ProjectReference Include="..\GustovRestaurant.Infraestructure\GustovRestaurant.Infraestructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EndPoints\" />
-  </ItemGroup>
-
 </Project>
