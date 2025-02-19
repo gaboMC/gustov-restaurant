@@ -23,6 +23,7 @@
       "dom"
     ]
   },
+  "extends": "./tsconfig.paths.json",
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

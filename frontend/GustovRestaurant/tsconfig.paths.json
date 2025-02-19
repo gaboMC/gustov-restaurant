@@ -1,0 +1,14 @@
+// tsconfig.paths.json
+{
+  "compilerOptions": {
+    "paths": {
+      "@gustov/core/models": ["./src/app/core/models"],
+      "@gustov/core/services": ["./src/app/core/services"],
+      //"@gustov/shared/header-base": ["./src/app/shared/controls/header-base"],
+      // "@gustov/shared/directives": ["./src/app/shared/directives"],
+      //"@gustov/shared/dialog": ["./src/app/shared/controls/dialog"],
+      //"@gustov/shared/alert-dialog": ["./src/app/shared/controls/alert-dialog"],
+      //"@gustov/shared/toast-notification": ["./src/app/shared/controls/toast-notification"],
+    }
+  }
+}
