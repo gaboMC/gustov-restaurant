@@ -33,6 +33,7 @@ public static class DependencyInjection
     {
         //add servicios
         collection.AddTransient<DishService>();
+        collection.AddTransient<SaleService>();
         return collection;
     }
 
@@ -40,6 +41,7 @@ public static class DependencyInjection
     {
         //add repositories
         collection.AddTransient<IDishRepository, DishRepository>();
+        collection.AddTransient<ISaleRepository, SaleRepository>();
         return collection;
     }
 }

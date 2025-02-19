@@ -9,7 +9,7 @@ public static class SaleExtension
     {
         return new SaleEntity
         {
-            Id = model.Id,
+            Id = model.Id,   
             Date = model.Date,
             Total = model.Total,
             UserId = model.UserId,
