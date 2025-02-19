@@ -42,5 +42,6 @@ if (app.Environment.IsDevelopment())
 
 //add endpoints
 app.MapDishEndPoints();
+app.MapSaleEndPoints();
 
 app.Run();

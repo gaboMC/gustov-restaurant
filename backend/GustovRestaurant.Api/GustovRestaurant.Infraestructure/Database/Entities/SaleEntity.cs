@@ -8,4 +8,5 @@ public class SaleEntity : IIdentifiable
     public DateTime Date { get; set; }
     public decimal Total { get; set; }
     public int UserId { get; set; }
+    public UserEntity User { get; set; }
 }

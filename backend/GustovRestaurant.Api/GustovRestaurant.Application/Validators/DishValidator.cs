@@ -14,7 +14,7 @@ public class DishValidator : AbstractValidator<DishModel>
         _repository = repository;
 
         RuleFor(d => d.Name)
-            .NotEmpty().WithMessage("Es nombre es obligatorio.");
+            .NotEmpty().WithMessage("El nombre es obligatorio.");
         RuleFor(d => d.Price)
             .NotEmpty().WithMessage("El precio es obligatorio.");
     }

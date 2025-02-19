@@ -26,5 +26,10 @@ public class SaleConfiguration : IEntityTypeConfiguration<SaleEntity>
         builder.Property(d => d.UserId)
             .HasColumnName("userId")
             .IsRequired();
+
+        builder.HasOne(s => s.User)
+            .WithMany(u => u.Sales)
+            .HasForeignKey(s => s.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
