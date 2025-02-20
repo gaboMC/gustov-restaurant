@@ -7,4 +7,6 @@ public class DishEntity : IIdentifiable
     public string Description { get; set; }
     public decimal Price { get; set; }
     public bool IsActive { get; set; }
+    
+    public ICollection<SaleDetailEntity> SaleDetails { get; set; }
 }
