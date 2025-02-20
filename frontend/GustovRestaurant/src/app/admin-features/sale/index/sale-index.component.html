@@ -1,0 +1,73 @@
+<div class="flex justify-between items-center bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden h-16 px-4">
+  <h1 class="text-lg font-semibold text-gray-900 dark:text-white">Venta</h1>
+</div>
+
+<div class="mx-auto max-w-screen px-4 lg:px-0 mt-2">
+  <div class="h-auto w-full bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden px-8">
+    <!-- Formulario de Productos -->
+    <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+      <div class="w-full md:w-1/2">
+        <label class="block text-orange-500 font-semibold">Producto *</label>
+        <input type="text" gustov-input class="" placeholder="Seleccionar producto" />
+      </div>
+      <div class="w-full md:w-1/2">
+        <label class="block text-orange-500 font-semibold">Cantidad *</label>
+        <input type="number" gustov-input class="" min="1" value="1" />
+      </div>
+    </div>
+
+    <!-- Tipo de Pago y Botón Agregar -->
+    <div class="flex justify-between items-center mt-4 p-4">
+      <button gustov-primary-button class="gap-x-2 inline-flex items-center">
+        <svg-icon class="flex h-4 w-4" src="assets/icons/icon-add.svg"/>
+        Agregar
+      </button>
+    </div>
+
+    <!-- Tabla de Productos -->
+    <div class="mt-6 overflow-hidden px-4">
+      <table class="w-full text-left">
+        <thead gustov-table-thead class="">
+          <tr>
+            <th class="px-4 py-3 w-1/3">Producto</th>
+            <th class="px-4 py-3 w-1/6 text-center">Cantidad</th>
+            <th class="px-4 py-3 w-1/6 text-center">Precio</th>
+            <th class="px-4 py-3 w-1/6 text-center">Total</th>
+            <th class="px-4 py-3 w-1/12 text-center">
+              <span class="sr-only">Acción</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr gustov-table-body class="border-t">
+            <td class="px-4 py-3">Laptop Samsung Book Pro</td>
+            <td class="px-4 py-3 text-center">1</td>
+            <td class="px-4 py-3 text-center">2500.00</td>
+            <td class="px-4 py-3 text-center">2500.00</td>
+            <td class="px-4 py-3 text-center">
+              <button class="text-red-500 text-lg">🗑️</button>
+            </td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-4 py-3">Auricular Redragon RGB</td>
+            <td class="px-4 py-3 text-center">1</td>
+            <td class="px-4 py-3 text-center">950.00</td>
+            <td class="px-4 py-3 text-center">950.00</td>
+            <td class="px-4 py-3 text-center">
+              <button class="text-red-500 text-lg">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total y Botón de Registro -->
+    <div class="flex justify-between items-center mt-6 p-4">
+      <span class="text-lg font-bold text-orange-600">Total: S/. 3450.00</span>
+      <button gustov-primary-button class="gap-x-2 inline-flex items-center">
+        <svg-icon class="flex h-4 w-4" src="assets/icons/icon-add.svg"/>
+        Registrar
+      </button>
+    </div>
+  </div>
+</div>

@@ -3,9 +3,9 @@
     <ul class="space-y-2 font-medium">
       @for (item of menuItems; track $index) {
           <li>
-            <a [routerLinkActive]="'text-white bg-primary-900 dark:bg-custom-secondary-educen-500'" [routerLink]="item.path" class="flex items-center p-2 text-primary-900 rounded-lg hover:bg-primary-900 hover:text-white dark:text-white dark:hover:bg-custom-secondary-educen-500 group">
-              <svg-icon [routerLinkActive]="'text-custom-secondary-educen-500 dark:text-white'" [src]="'assets/icons/'+[item.icon]"
-                class="flex-shrink-0 w-5 h-5 text-custom-secondary-educen-400 transition duration-75 dark:text-custom-secondary-educen-400 group-hover:text-custom-secondary-educen-500 dark:group-hover:text-white" aria-hidden="true" fill="currentColor">
+            <a [routerLinkActive]="'text-white bg-primary-900 dark:bg-custom-secondary-gustov-500'" [routerLink]="item.path" class="flex items-center p-2 text-primary-900 rounded-lg hover:bg-primary-900 hover:text-white dark:text-white dark:hover:bg-custom-secondary-gustov-500 group">
+              <svg-icon [routerLinkActive]="'text-custom-secondary-gustov-500 dark:text-white'" [src]="'assets/icons/'+[item.icon]"
+                class="flex-shrink-0 w-5 h-5 text-custom-secondary-gustov-400 transition duration-75 dark:text-custom-secondary-gustov-400 group-hover:text-custom-secondary-gustov-500 dark:group-hover:text-white" aria-hidden="true" fill="currentColor">
               </svg-icon>
               <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
             </a>
