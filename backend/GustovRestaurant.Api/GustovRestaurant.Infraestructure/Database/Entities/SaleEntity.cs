@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GustovRestaurant.Infraestructure.Database.Entities;
@@ -9,4 +10,5 @@ public class SaleEntity : IIdentifiable
     public decimal Total { get; set; }
     public int UserId { get; set; }
     public UserEntity User { get; set; }
+    public ICollection<SaleDetailEntity> SaleDetails { get; set; }
 }
