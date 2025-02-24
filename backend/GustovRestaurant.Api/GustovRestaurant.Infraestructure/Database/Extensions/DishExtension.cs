@@ -1,3 +1,4 @@
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 using GustovRestaurant.Infraestructure.Database.Entities;
 
@@ -25,6 +26,16 @@ public static class DishExtension
             entity.Description,
             entity.Price,
             entity.IsActive
+        );
+    }
+    
+    public static DishDto ToDto(this DishEntity entity)
+    {
+        return new DishDto(
+            entity.Id,
+            entity.Name,
+            //entity.Description,
+            entity.Price
         );
     }
 }

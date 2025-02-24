@@ -1,4 +1,5 @@
 using System.Net;
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 using GustovRestaurant.Domain.Repositories;
 using GustovRestaurant.Domain.Responses;
@@ -7,11 +8,15 @@ namespace GustovRestaurant.Application.Services;
 
 public class SaleDetailService
 {
-    private readonly ISaleDetaiilRepository _repository;
+    private readonly ISaleDetailRepository _saleDetailRepository;
+    private readonly ISaleRepository _saleRepository;
+    private readonly IDishRepository _dishRepository;
 
-    public SaleDetailService(ISaleDetaiilRepository repository)
+    public SaleDetailService(ISaleDetailRepository saleDetailRepository, ISaleRepository saleRepository, IDishRepository dishRepository)
     {
-        _repository = repository;
+        _saleDetailRepository = saleDetailRepository;
+        _saleRepository = saleRepository;
+        _dishRepository = dishRepository;
     }
     
     //save
@@ -23,7 +28,7 @@ public class SaleDetailService
         //     var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
         //     return Result<bool>.Failure(errorMessages, HttpStatusCode.BadRequest);
         // }
-        var isCreated = (await _repository.CreateAsync(model)) != null;
+        var isCreated = (await _saleDetailRepository.CreateAsync(model)) != null;
         return Result<bool>.Success(isCreated, HttpStatusCode.Created);
     }
     //update
@@ -35,26 +40,51 @@ public class SaleDetailService
         //     var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
         //     return Result<bool>.Failure(errorMessages, HttpStatusCode.BadRequest);
         // }
-        var isUpdated = (await _repository.UpdateAsync(model)) != null;
+        var isUpdated = (await _saleDetailRepository.UpdateAsync(model)) != null;
         return Result<bool>.Success(isUpdated, HttpStatusCode.Created);
-    }
-    //delete
-    public async Task<Result<bool>> Delete(int id)
-    {
-        var isDeleted = await _repository.DeleteAsync(id);
-        if (!isDeleted) return Result<bool>.Failure(default!, HttpStatusCode.NotFound);
-        return Result<bool>.Success(isDeleted, HttpStatusCode.OK);
     }
     //get by id
     public async Task<Result<SaleDetailModel?>> GetById(int id)
     {
-        var item = await _repository.GetByIdAsync(id);
+        var item = await _saleDetailRepository.GetByIdAsync(id);
         return Result<SaleDetailModel?>.Success(item, HttpStatusCode.OK);
     }
-    //get all
-    public Task<Result<List<SaleDetailModel>>> GetAll()
+    //get all - first report
+    public async Task<Result<List<SaleDetailDto>>> GetFirstReport(string filterDate)
     {
-        var items = _repository.GetAllSaleDetailAsync();
-        return Task.FromResult(Result<List<SaleDetailModel>>.Success(items.Result, HttpStatusCode.OK));
+        var filter = DateTime.Parse(filterDate);
+
+        var filteredSales = await _saleRepository.GetSalesByDateAsync(filter);
+        var saleIds = filteredSales.Select(s => s.Id).ToList();
+        var filteredSaleDetails = await _saleDetailRepository.GetSaleDetailsBySaleIdAsync(saleIds);
+
+        var dishes = await _dishRepository.GetAllDishDtosAsync();
+
+        var groupedSaleDetails = filteredSaleDetails
+            .GroupBy(sd => sd.DishId)
+            .Select(g => new
+            {
+                DishId = g.Key,
+                TotalQuantity = g.Sum(sd => sd.Quantity),
+                TotalPrice = g.Sum(sd => sd.Quantity * sd.Price)
+            })
+            .ToList();
+
+        var listCompleteSaleDetails = groupedSaleDetails.Select(g =>
+        {
+            var dish = dishes.FirstOrDefault(d => d.Id == g.DishId);
+            return new SaleDetailDto(
+                0,
+                0,
+                null,
+                g.DishId,
+                dish != null ? new DishDto(dish.Id, dish.Name, dish.Price) : null,
+                g.TotalQuantity,
+                g.TotalPrice / g.TotalQuantity
+            );
+        }).ToList();
+
+        return Result<List<SaleDetailDto>>.Success(listCompleteSaleDetails, HttpStatusCode.OK);
     }
+
 }

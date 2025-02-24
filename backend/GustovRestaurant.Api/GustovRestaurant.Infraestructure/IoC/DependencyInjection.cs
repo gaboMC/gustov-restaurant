@@ -43,7 +43,7 @@ public static class DependencyInjection
         //add repositories
         collection.AddTransient<IDishRepository, DishRepository>();
         collection.AddTransient<ISaleRepository, SaleRepository>();
-        collection.AddTransient<ISaleDetaiilRepository, SaleDetailRepository>();
+        collection.AddTransient<ISaleDetailRepository, SaleDetailRepository>();
         return collection;
     }
 }

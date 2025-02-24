@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Reports\DailySalesReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\DailySalesReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GustovRestaurant.Domain\GustovRestaurant.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

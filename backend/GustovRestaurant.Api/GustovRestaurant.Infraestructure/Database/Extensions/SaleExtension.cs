@@ -1,3 +1,4 @@
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 using GustovRestaurant.Infraestructure.Database.Entities;
 
@@ -23,6 +24,15 @@ public static class SaleExtension
             entity.Date,
             entity.Total,
             entity.UserId
+        );
+    }
+    
+    public static SaleDto ToDto(this SaleEntity entity)
+    {
+        return new SaleDto(
+            entity.Id,
+            entity.Date,
+            entity.Total
         );
     }
 }

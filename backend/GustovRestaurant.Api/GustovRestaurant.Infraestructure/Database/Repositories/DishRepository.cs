@@ -1,3 +1,4 @@
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 using GustovRestaurant.Domain.Repositories;
 using GustovRestaurant.Infraestructure.Database.Context;
@@ -35,11 +36,29 @@ public class DishRepository : GenericRepository<DishEntity>, IDishRepository
         return entity?.ToModel();
     }
 
+    public async Task<DishModel?> DeleteSoftAsync(int id)
+    {
+        var entity = await _dbContext.Dishes.FindAsync(id);
+        if (entity != null)
+        {
+            entity.IsActive = !entity.IsActive; 
+            await UpdateAsync(entity);
+            return entity.ToModel();
+        }
+        return null;
+    }
+
     public async Task<List<DishModel>> GetAllDishesAsync()
     {
         var result = await _dbContext.Dishes
             .Where(d => d.IsActive == true)
             .ToListAsync();
         return result.Select(d => d.ToModel()).ToList();
+    }
+
+    public async Task<List<DishDto>> GetAllDishDtosAsync()
+    {
+        var result = await _dbContext.Dishes.ToListAsync();
+        return result.Select(d => d.ToDto()).ToList();
     }
 }

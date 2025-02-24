@@ -28,12 +28,12 @@ public static class DishEndPoints
                 var result = service.Update(model).Result;
                 return Results.Json(result, statusCode: (int)result.StatusCode);
             });
-        //Delete
-        groupBuilder.MapDelete(
+        //DeleteSoft
+        groupBuilder.MapPatch(
             "{dishId:int}",
             (int dishId, DishService service) =>
             {
-                var result = service.Delete(dishId).Result;
+                var result = service.DeleteSoft(dishId).Result;
                 return Results.Json(result, statusCode: (int)result.StatusCode);
             });
         //GetById

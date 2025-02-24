@@ -1,3 +1,4 @@
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 using GustovRestaurant.Domain.Repositories;
 using GustovRestaurant.Infraestructure.Database.Context;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GustovRestaurant.Infraestructure.Database.Repositories;
 
-public class SaleDetailRepository : GenericRepository<SaleDetailEntity>, ISaleDetaiilRepository
+public class SaleDetailRepository : GenericRepository<SaleDetailEntity>, ISaleDetailRepository
 {
     private readonly GustovRestaurantDBContext _dbContext;
     public SaleDetailRepository(GustovRestaurantDBContext dbContext) : base(dbContext)
@@ -35,9 +36,19 @@ public class SaleDetailRepository : GenericRepository<SaleDetailEntity>, ISaleDe
         return entity?.ToModel();
     }
 
-    public async Task<List<SaleDetailModel>> GetAllSaleDetailAsync()
+    public async Task<bool> SaveRange(List<SaleDetailModel> model)
     {
-        var result = await _dbContext.SaleDetails.ToListAsync();
-        return result.Select(s => s.ToModel()).ToList();
+        var entities = model.Select(s => s.ToEntity());
+        await _dbContext.SaleDetails.AddRangeAsync(entities);
+        await _dbContext.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<List<SaleDetailDto>> GetSaleDetailsBySaleIdAsync(List<int> saleIds)
+    {
+        var result = await _dbContext.SaleDetails
+            .Where(sd => saleIds.Contains(sd.SaleId))
+            .ToListAsync();
+        return result.Select(sd => sd.ToDto()).ToList();
     }
 }

@@ -30,16 +30,6 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         return entityEntry.Entity;
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var del = await _dbSet.FindAsync(id);
-        if (del is null) return false;
-        
-        _dbSet.Remove(del);
-        await _dbContext.SaveChangesAsync();
-        return true;
-    }
-
     public async Task<TEntity?> GetByIdAsync(int id)
     {
         return await _dbSet.FindAsync(id);

@@ -1,8 +1,10 @@
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 
 namespace GustovRestaurant.Domain.Repositories;
 
-public interface ISaleDetaiilRepository : IGenericRepository<SaleDetailModel>
+public interface ISaleDetailRepository : IGenericRepository<SaleDetailModel>
 {
-    Task<List<SaleDetailModel>> GetAllSaleDetailAsync(); 
+    Task<bool> SaveRange(List<SaleDetailModel> model);
+    Task<List<SaleDetailDto>> GetSaleDetailsBySaleIdAsync(List<int> saleIds); 
 }

@@ -41,12 +41,12 @@ public class DishService
         var isUpdated = (await _repository.UpdateAsync(model)) != null;
         return Result<bool>.Success(isUpdated, HttpStatusCode.Created);
     }
-    //delete
-    public async Task<Result<bool>> Delete(int id)
+    //deleteSoft
+    public async Task<Result<bool>> DeleteSoft(int id)
     {
-        var isDeleted = await _repository.DeleteAsync(id);
-        if (!isDeleted) return Result<bool>.Failure(default!, HttpStatusCode.NotFound);
-        return Result<bool>.Success(isDeleted, HttpStatusCode.OK);
+        var item = await _repository.DeleteSoftAsync(id);
+        if (item != null) return Result<bool>.Success(true, HttpStatusCode.OK);
+        return Result<bool>.Failure(default!, HttpStatusCode.NotFound);
     }
     //get by id
     public async Task<Result<DishModel?>> GetById(int id)

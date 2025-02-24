@@ -10,7 +10,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
     {
         builder.ToTable("User", "dbo")
             .HasComment("Table Users");
-        
+
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Id)
             .HasColumnName("id")
@@ -24,6 +24,13 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
         builder.Property(u => u.RegistrationDate)
             .HasColumnName("registrationDate")
             .IsRequired();
-        
+
+        builder.HasData(new UserEntity
+        {
+            Name = "Boris Mamani",
+            Role = "Administrador",
+            RegistrationDate = DateTime.UtcNow
+        });
+
     }
 }

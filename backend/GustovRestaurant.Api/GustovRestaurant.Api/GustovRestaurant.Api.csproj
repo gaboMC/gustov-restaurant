@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GustovRestaurant.Application\GustovRestaurant.Application.csproj" />
     <ProjectReference Include="..\GustovRestaurant.Infraestructure\GustovRestaurant.Infraestructure.csproj" />
+    <ProjectReference Include="..\GustovRestaurant.Reports\GustovRestaurant.Reports.csproj" />
   </ItemGroup>
 
 </Project>

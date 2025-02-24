@@ -28,14 +28,6 @@ public static class SaleDetailEndPoints
                 var result = service.Update(model).Result;
                 return Results.Json(result, statusCode: (int)result.StatusCode);
             });
-        //Delete
-        groupBuilder.MapDelete(
-            "{saleDetailId:int}",
-            (int saleDetailId, SaleDetailService service) =>
-            {
-                var result = service.Delete(saleDetailId).Result;
-                return Results.Json(result, statusCode: (int)result.StatusCode);
-            });
         //GetById
         groupBuilder.MapGet(
             "/by-id/{saleDetailId:int}",
@@ -44,12 +36,12 @@ public static class SaleDetailEndPoints
                 var result = service.GetById(saleDetailId).Result;
                 return Results.Json(result, statusCode: (int)result.StatusCode);
             });
-        //GetAll
+        // GetFirstReport
         groupBuilder.MapGet(
-            "",
-            (SaleDetailService service) =>
+            "/first-report/",
+            (string filterDate, SaleDetailService service) =>
             {
-                var result = service.GetAll().Result;
+                var result = service.GetFirstReport(filterDate).Result;
                 return Results.Json(result, statusCode: (int)result.StatusCode);
             });
     }

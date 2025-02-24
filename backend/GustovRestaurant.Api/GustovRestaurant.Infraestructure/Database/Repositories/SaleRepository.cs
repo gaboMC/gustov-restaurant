@@ -1,3 +1,4 @@
+using GustovRestaurant.Domain.Dtos;
 using GustovRestaurant.Domain.Models;
 using GustovRestaurant.Domain.Repositories;
 using GustovRestaurant.Infraestructure.Database.Context;
@@ -36,10 +37,11 @@ public class SaleRepository : GenericRepository<SaleEntity>, ISaleRepository
         return entity?.ToModel();
     }
 
-    public async Task<List<SaleModel>> GetAllSalesAsync()
+    public async Task<List<SaleDto>> GetSalesByDateAsync(DateTime filterDate)
     {
-        var result = await _dbContext.Sales.ToListAsync();
-        return result.Select(s => s.ToModel()).ToList();
-
+        var result = await _dbContext.Sales
+            .Where(s => s.Date.Date == filterDate.Date)
+            .ToListAsync();
+        return result.Select(sd => sd.ToDto()).ToList();
     }
 }
