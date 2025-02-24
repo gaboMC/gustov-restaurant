@@ -21,7 +21,21 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@gustov/core/models": [
+        "./src/app/core/models"
+      ],
+      "@gustov/core/services": [
+        "./src/app/core/services"
+      ],
+      "@gustov/admin-features/models": [
+        "./src/app/admin-features/models"
+      ],
+      "@gustov/admin-features/services": [
+        "./src/app/admin-features/services"
+      ],
+    }
   },
   "extends": "./tsconfig.paths.json",
   "angularCompilerOptions": {

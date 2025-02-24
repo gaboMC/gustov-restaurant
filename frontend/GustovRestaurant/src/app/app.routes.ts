@@ -8,6 +8,6 @@ export const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./admin-features/main-layout/main-layout.routes')
+    loadChildren: () => import('./admin-features/views/main-layout/main-layout.routes')
   },
 ];
